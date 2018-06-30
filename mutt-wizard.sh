@@ -26,8 +26,8 @@ addSync() { min=$(dialog --inputbox "How many minutes should be between mail syn
 removeSync() { ((crontab -l | sed -e '/.config\/mutt\/etc\/mailsync/d') | crontab - >/dev/null) && dialog --msgbox "Cronjob successfully removed. To reactivate, select this option again." 6 60 ;}
 
 changePassword() { \
-	gpgemail=$( dialog --title "Luke's mutt/offlineIMAP password wizard" --inputbox "Insert the email address with which you originally created your GPG key pair. This is NOT necessarily the email you want to configure." 10 60 3>&1 1>&2 2>&3 3>&- )
-	dialog --title "Luke's mutt/offlineIMAP password wizard" --passwordbox "Enter the new password for the \"$1\" account." 10 60 2> /tmp/$1
+	gpgemail=$( dialog --title "Kirk's mutt/offlineIMAP password wizard" --inputbox "Insert the email address with which you originally created your GPG key pair. This is NOT necessarily the email you want to configure." 10 60 3>&1 1>&2 2>&3 3>&- )
+	dialog --title "Kirk's mutt/offlineIMAP password wizard" --passwordbox "Enter the new password for the \"$1\" account." 10 60 2> /tmp/$1
 	gpg2 -r $gpgemail --encrypt /tmp/$1 || (dialog --title "GPG decryption failed." --msgbox "GPG decryption failed. This is either because you do not have a GPG key pair or because your distro uses GPG1 and you thus need to symlink /usr/bin/gpg2 to /usr/bin/gpg." 7 60 && break)
 	shred -u /tmp/$1
 	mv /tmp/$1.gpg ~/.config/mutt/credentials/
@@ -134,7 +134,7 @@ manual() { \
 	sport=$( dialog --inputbox "What is your server's SMTP port number? (Usually 587 or 465)" 10 60 3>&1 1>&2 2>&3 3>&- ) ;}
 
 
-addloop() { fulladdr=$( dialog --title "Luke's mutt/offlineIMAP autoconfig" --inputbox "Insert the full email address for the account you want to configure." 10 60 3>&1 1>&2 2>&3 3>&- )
+addloop() { fulladdr=$( dialog --title "Kirk's mutt/offlineIMAP autoconfig" --inputbox "Insert the full email address for the account you want to configure." 10 60 3>&1 1>&2 2>&3 3>&- )
 # Check to see if domain is in domain list
 serverinfo=$(cat "$muttdir"autoconf/domains.csv | grep -w ^${fulladdr##*@})
 if [ -z "$serverinfo" ];
@@ -146,9 +146,9 @@ IFS=, read service imap iport smtp sport <<EOF
 $serverinfo
 EOF
 fi
-realname=$( dialog --title "Luke's mutt/offlineIMAP autoconfig" --inputbox "Enter the full name you'd like to be identified by on this email account." 10 60 3>&1 1>&2 2>&3 3>&- )
-title=$( dialog --title "Luke's mutt/offlineIMAP autoconfig" --inputbox "Give a short, one-word name for this email account that will differentiate it from other email accounts." 10 60 3>&1 1>&2 2>&3 3>&- )
-login=$(dialog --title "Luke's mutt/offlineIMAP autoconfig" --inputbox "If you have a username for the \"$title\" account which is different from your email address, enter it here. Otherwise leave this prompt blank." 10 60 3>&1 1>&2 2>&3 3>&- )
+realname=$( dialog --title "Kirk's mutt/offlineIMAP autoconfig" --inputbox "Enter the full name you'd like to be identified by on this email account." 10 60 3>&1 1>&2 2>&3 3>&- )
+title=$( dialog --title "Kirk's mutt/offlineIMAP autoconfig" --inputbox "Give a short, one-word name for this email account that will differentiate it from other email accounts." 10 60 3>&1 1>&2 2>&3 3>&- )
+login=$(dialog --title "Kirk's mutt/offlineIMAP autoconfig" --inputbox "If you have a username for the \"$title\" account which is different from your email address, enter it here. Otherwise leave this prompt blank." 10 60 3>&1 1>&2 2>&3 3>&- )
 # Sets the repo type and other variables for the sed regex.
 if [[ "$service" == "gmail.com" ]];
 	then
@@ -183,7 +183,7 @@ addAccount \
 
 addAccount() {
 	# First, adding the encrypted password.
-	dialog --title "Luke's mutt/offlineIMAP password wizard" --passwordbox "Enter the password for the \"$title\" account." 10 60 2> /tmp/$title
+	dialog --title "Kirk's mutt/offlineIMAP password wizard" --passwordbox "Enter the password for the \"$title\" account." 10 60 2> /tmp/$title
 	gpg2 -r $gpgemail --encrypt /tmp/$title || (dialog --title "GPG decryption failed." --msgbox "GPG decryption failed. This is either because you do not have a GPG key pair or because your distro uses GPG1 and you thus need to symlink /usr/bin/gpg2 to /usr/bin/gpg." 7 60 && break)
 	shred -u /tmp/$title
 	mv /tmp/$title.gpg ~/.config/mutt/credentials/
@@ -218,11 +218,11 @@ addAccount() {
 # This is run when a user chooses to add an account.
 chooseAdd() { \
 	mkdir -p "$muttdir"credentials/ "$muttdir"accounts/
-	gpgemail=$( dialog --title "Luke's mutt/offlineIMAP password wizard" --inputbox "Insert the email address with which you originally created your GPG key pair. This is NOT necessarily the email you want to configure." 10 60 3>&1 1>&2 2>&3 3>&- )
+	gpgemail=$( dialog --title "Kirk's mutt/offlineIMAP password wizard" --inputbox "Insert the email address with which you originally created your GPG key pair. This is NOT necessarily the email you want to configure." 10 60 3>&1 1>&2 2>&3 3>&- )
 	addloop
 	while : ;
 	do
-		dialog --title "Luke's mutt/offlineIMAP password wizard" --yesno "Would you like to add another email account?" 5 60 || break
+		dialog --title "Kirk's mutt/offlineIMAP password wizard" --yesno "Would you like to add another email account?" 5 60 || break
 		addloop
 	done ;}
 
@@ -233,7 +233,7 @@ wipe () { rm $HOME/.offlineimaprc
 
 while : ;
 	do
-choice=$(dialog --title "Luke's mutt/offlineIMAP wizard" --nocancel \
+choice=$(dialog --title "Kirk's mutt/offlineIMAP wizard" --nocancel \
 	--menu "What would you like to do?" 15 45 8 \
 	0 "List all email accounts configured." \
 	1 "Add an email account." \

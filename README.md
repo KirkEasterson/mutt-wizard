@@ -1,4 +1,4 @@
-# Luke's mutt Wizard for automatic Neomutt and OfflineIMAP configuration!
+# Kirk's mutt Wizard for automatic Neomutt and OfflineIMAP configuration!
 
 ![mutt wizard preview](etc/mw.png)
 
@@ -19,7 +19,7 @@ The system takes an email and autodetect its server settings, generating a muttr
 
 ### Will it work on my email? (95% yes)
 
-Yes! At this point, the only problems are the unexpected ones. Please try it, and if you do run into problems, email me at [luke@lukesmith.xyz](mailto:luke@lukesmith.xyz)! I've tried the system personally on Gmail, Teknik.io, cock.li and Yandex, while others have tried other providers.
+Yes! At this point, the only problems are the unexpected ones. Please try it, and if you do run into problems, email me at [kirk@kirkeasterson.com](mailto:kirk@kirkeasterson.com)! I've tried the system personally on Gmail, Teknik.io, cock.li and Yandex, while others have tried other providers.
 
 One email provider which I think will *not* work (and will never work) is Proton Mail, but that's only because they require encryption through their web client IIRC.
 
@@ -30,7 +30,7 @@ Note also that Gmail and some providers require you to enable sign-ins from thir
 `dialog`, `neomutt` and `offlineimap` should be installed. You also need to have a GPG public/private key pair for the wizard to automatically store your passwords. The whole repo should be cloned to `~/.config/mutt/`. (If you have a previous mutt folder, you'll want to back it up or delete it first.)
 
 ```
-git clone https://github.com/LukeSmithxyz/mutt-wizard.git ~/.config/mutt
+git clone https://github.com/kirkeasterson/mutt-wizard.git ~/.config/mutt
 ```
 
 You will want to delete or rename your current `~/.offlineimaprc` as well, as although you can later modify the `~/.offlineimaprc` produced by the script, you must have no file there the first time you add your first account or the wizard will assume some settings are already set which aren't.
@@ -58,7 +58,7 @@ Look at the code. The script takes the passwords you give it, encrypts them imme
 
 If you use mutt with a particular host or domain, put your server information in `domains.csv`! This will make everyone else who uses your email provider's life much easier!
 
-Or you can help monetarily via [Patreon](https://patreon.com/lukesmith) or [Paypal](https://paypal.me/LukeMSmith)!
+Or you can help monetarily via [Paypal](https://paypal.me/kirkeasterson)!
 
 ## Notes
 
